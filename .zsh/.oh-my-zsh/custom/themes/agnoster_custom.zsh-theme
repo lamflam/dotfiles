@@ -98,6 +98,7 @@ prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
+    ref=$(echo $ref | sed -e 's/\(refs\/heads\/\)\([a-z]\).*\/[0-9]\{2\}\([0-9]\{4\}\)\/\(.*\)/\1\2\/\3\/\4/')
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
@@ -187,14 +188,20 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+  if [ -z $VIRTUAL_ENV ]; then
+    prompt_segment blue black '%~'
+  fi
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
+  local venv_dir venv
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+		venv_dir=$(dirname "$VIRTUAL_ENV")
+    venv=$(basename $venv_dir)
+    prompt_segment magenta black "`pwd | sed -e 's|'"$venv_dir"'\(.*\)|'"$venv"'\1|' -e 's|'"$HOME"'\(.*\)|~\1|' -e 's|\(.*\)|[\1]|'`"
+    # prompt_segment blue black "(`basename $virtualenv_path`)"
   fi
 }
 
@@ -217,11 +224,11 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_context
+  # prompt_context
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
+  # prompt_bzr
+  # prompt_hg
   prompt_end
 }
 
