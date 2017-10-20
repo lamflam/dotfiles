@@ -1,0 +1,18 @@
+#!/bin/bash
+
+LOCKFILE=/tmp/tmux_copy.lock
+
+function cleanup() {
+  rm $LOCKFILE
+}
+
+if [ ! -f $LOCKFILE ]; then
+  echo $$ > $LOCKFILE
+  trap cleanup 0
+  while true; do
+    if test -n "`tmux showb 2> /dev/null`"; then
+      tmux saveb -|pbcopy && tmux deleteb
+    fi
+    sleep 0.5
+  done
+fi
