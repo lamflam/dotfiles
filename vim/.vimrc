@@ -19,7 +19,7 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
-nmap <leader>p :ALEFix<cr>                                                        " \p to prettify 
+nmap <leader>p :ALEFix<cr>                                                        " \p to prettify
 nmap <leader>q :bw<cr>                                                            " \q to close current window
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
@@ -49,7 +49,10 @@ set cmdheight=2                                                                 
 set cul                                                                            " highlight current line
 set hlsearch                                                                       " highlight search
 set ignorecase                                                                     " Case insensitive
+set incsearch                                                                      " Move forward while typing search
 set laststatus=2                                                                   " always have a status bar
+set mouse=a                                                                        " enable mouse
+set ttymouse=xterm2                                                                " enable mouse
 set nobackup                                                                       " no backups
 set noerrorbells                                                                   " no beeping
 set nohidden                                                                       " dont unload my buffer
@@ -85,15 +88,14 @@ catch /E117:/
 endtry
 
 Plugin 'VundleVim/Vundle.vim'                                                      " let Vundle manage Vundle, required
-Plugin 'morhetz/gruvbox'                                                           " Main colorscheme
-" Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
 Plugin 'w0rp/ale'                                                                  " Linter
 Plugin 'junegunn/fzf.vim'
-Plugin 'itchyny/lightline.vim'                                                     " Status line
-
-                                                                                   " All of your Plugins must be added before the following line
-call vundle#end()                                                                  " required for Vundle
-filetype plugin indent on                                                          " required for Vundle
+Plugin 'morhetz/gruvbox'                                                           " Main colorscheme
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'itchyny/lightline.vim'                                                   " Status line
+" Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
 
 " ALE Settings
 let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ] }
@@ -109,9 +111,45 @@ let g:ackprg = 'ag --vimgrep'
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
 
+" Airline
+let g:airline_powerline_fonts = 1
+" Don't show the format if it's just a standard file
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_extensions = ['branch', 'ale']
+let g:airline#extensions#branch#format = 'CustomBranchName'
+function! CustomBranchName(name)
+    let a:parts = split(a:name, '/')
+    if len(a:parts) == 3
+        return a:parts[0][0] . '/' . strpart(a:parts[1], 2) . '/' . a:parts[2]
+    else
+        return a:name
+    endif
+endfunction
+
+                                                                                   " All of your Plugins must be added before the following line
+call vundle#end()                                                                  " required for Vundle
+filetype plugin indent on                                                          " required for Vundle
+
+" ----------------------------------------------------------------------------
+" COLORS
+" ----------------------------------------------------------------------------
+
+syntax enable
+set background=dark
+colorscheme gruvbox
+
+
+
+
+
+
+
+
+
+
 " Lightline
 let g:lightline = {
-\ 'colorscheme': 'wombat',
+\ 'colorscheme': 'gruvbox',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
@@ -153,11 +191,3 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
-
-" ----------------------------------------------------------------------------
-" COLORS
-" ----------------------------------------------------------------------------
-
-syntax enable
-set background=dark
-colorscheme gruvbox
