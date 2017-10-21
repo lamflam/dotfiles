@@ -79,12 +79,12 @@ filetype off                                                                    
 set rtp+=~/.vim/bundle/Vundle.vim                                                  " set the runtime path to include Vundle and initialize
 let s:bootstrap = 0
 try
-        call vundle#begin()
+    call vundle#begin()
 catch /E117:/
-        let s:bootstrap = 1
-         !unset GIT_DIR && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-        redraw!
-        call vundle#begin()
+    let s:bootstrap = 1
+    !unset GIT_DIR && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    redraw!
+    call vundle#begin()
 endtry
 
 Plugin 'VundleVim/Vundle.vim'                                                      " let Vundle manage Vundle, required
@@ -139,13 +139,9 @@ set background=dark
 colorscheme gruvbox
 
 
-
-
-
-
-
-
-
+" ----------------------------------------------------------------------------
+" NO LONGER USED
+" ----------------------------------------------------------------------------
 
 " Lightline
 let g:lightline = {
