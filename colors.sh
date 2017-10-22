@@ -23,4 +23,4 @@ if test -t 1; then
     fi
 fi
 
-source $DOTFILES/gruvbox_colors
+source $DOTFILES/gruvbox_colors.sh

@@ -1,5 +1,0 @@
-export GPG_TTY=$(tty)
-
-if [ -e $DOTFILES/exports.local ]; then
-  source $DOTFILES/exports.local
-fi
