@@ -68,6 +68,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab                              
 set textwidth=120                                                                  " 120 max line length
 set visualbell t_vb="."                                                            " no beeping, visual only
 
+
 " ----------------------------------------------------------------------------
 " PLUGIN SETTINGS
 " ----------------------------------------------------------------------------
@@ -137,6 +138,7 @@ filetype plugin indent on                                                       
 syntax enable
 set background=dark
 colorscheme gruvbox
+let g:is_bash=1                                                                    " treat shell as bash by default
 
 
 " ----------------------------------------------------------------------------
