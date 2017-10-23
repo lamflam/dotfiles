@@ -18,21 +18,9 @@ parse_dir() {
   fi
 }
 
-function boldtext {
-    echo "\\[\\033[1m\\]"$1"\\[\\033[0m\\]"
+set_prompt() {
+    PS1="${blue}$(parse_dir)${yellow}$(parse_git_branch)${normal}>"
 }
 
-function bgcolor {
-    echo "\\[\\033[48;5;"$1"m\\]"
-}
-
-function fgcolor {
-    echo "\\[\\033[38;5;"$1"m\\]"
-}
-
-function resetcolor {
-    echo "\\[\\e[0m\\]"
-}
-
-export PS1="$(fgcolor 033)$(boldtext $'$(parse_dir)')$(fgcolor 184) $(boldtext $'$(parse_git_branch)')$(resetcolor)🥃  "
+export PROMPT_COMMAND=set_prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
