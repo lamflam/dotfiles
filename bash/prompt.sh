@@ -19,7 +19,7 @@ parse_dir() {
 }
 
 set_prompt() {
-    PS1="${blue}$(parse_dir)${yellow}$(parse_git_branch)${normal}>"
+    PS1="${blue}$(parse_dir)${yellow}$(parse_git_branch)${normal}» "
 }
 
 export PROMPT_COMMAND=set_prompt
