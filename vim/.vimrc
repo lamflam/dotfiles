@@ -21,6 +21,7 @@ nmap <C-l> <C-W>l
 
 nmap <leader>f :ALEFix<cr>                                                        " \f to format
 nmap <leader>q :bw<cr>                                                            " \q to close current window
+nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
 
@@ -94,6 +95,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'morhetz/gruvbox'                                                           " Main colorscheme
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
