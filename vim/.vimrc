@@ -19,7 +19,7 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
-nmap <leader>p :ALEFix<cr>                                                        " \p to prettify
+nmap <leader>f :ALEFix<cr>                                                        " \f to format
 nmap <leader>q :bw<cr>                                                            " \q to close current window
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
