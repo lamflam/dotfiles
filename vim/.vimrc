@@ -19,11 +19,17 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
+" Ctrl+Shift j/k moves line up or down
+nmap <C-S-k> :m -2<cr>
+nmap <C-S-j> :m +1<cr>
+
 nmap <leader>f :ALEFix<cr>                                                        " \f to format
 nmap <leader>q :bw<cr>                                                            " \q to close current window
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
+nmap <leader>= :vertical resize +5<cr>                                            " Increase vertical split window
+nmap <leader>- :vertical resize -5<cr>                                            " Decrease vertical split window
 
 " ----------------------------------------------------------------------------
 " CUSTOM COMMANDS AND FUNCTIONS
@@ -96,6 +102,8 @@ Plugin 'morhetz/gruvbox'                                                        
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
+Plugin 'tpope/vim-eunuch.git'                                                      " Unix shell commands, :Delete, :Move, :Rename
+Plugin 'sheerun/vim-polyglot'                                                      " Language packs
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
