@@ -58,8 +58,7 @@ set hlsearch                                                                    
 set ignorecase                                                                     " Case insensitive
 set incsearch                                                                      " Move forward while typing search
 set laststatus=2                                                                   " always have a status bar
-set mouse=a                                                                        " enable mouse
-set ttymouse=xterm2                                                                " enable mouse
+set mouse=a ttymouse=xterm2                                                        " enable mouse
 set nobackup                                                                       " no backups
 set noerrorbells                                                                   " no beeping
 set nohidden                                                                       " dont unload my buffer
@@ -73,6 +72,7 @@ set showmatch                                                                   
 set showcmd                                                                        " show information about the current command
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab                                 " no tabs
 set textwidth=120                                                                  " 120 max line length
+set ttimeoutlen=50                                                                 " Escape faster 
 set visualbell t_vb="."                                                            " no beeping, visual only
 
 
@@ -104,6 +104,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
 Plugin 'tpope/vim-eunuch.git'                                                      " Unix shell commands, :Delete, :Move, :Rename
 Plugin 'sheerun/vim-polyglot'                                                      " Language packs
+Plugin 'jiangmiao/auto-pairs'                                                      " Bracket completion
+Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
@@ -121,6 +123,15 @@ highlight link ALEErrorSign Title
 let g:ackprg = 'ag --vimgrep'
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
+
+" vim-jsx settings (included with polyglot)
+let g:jsx_ext_required = 0
+
+" auto pairs settings
+" Don't jump to next line on closing tag
+let g:AutoPairsMultineClose = 0
+let g:AutoPairsCenterLine = 0
+let g:AutoPairsMapSpace = 0
 
 " Airline
 let g:airline_powerline_fonts = 1
