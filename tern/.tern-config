@@ -1,7 +1,8 @@
 {
     "plugins": {
         "node": {},
-        "es_modules": {}
+        "es_modules": {},
+        "jsx": {}
     },
     "libs": [
         "ecmascript",
