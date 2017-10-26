@@ -106,6 +106,7 @@ Plugin 'tpope/vim-eunuch.git'                                                   
 Plugin 'sheerun/vim-polyglot'                                                      " Language packs
 Plugin 'jiangmiao/auto-pairs'                                                      " Bracket completion
 Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
+Plugin 'tpope/vim-surround'                                                        " better bracket commands
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
@@ -123,6 +124,16 @@ highlight link ALEErrorSign Title
 let g:ackprg = 'ag --vimgrep'
 set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
+
+function! s:ag_with_opts(arg, bang)
+  let tokens  = split(a:arg)
+  call insert(tokens, '--hidden')
+  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
+  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
+  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+endfunction
+
+autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
 
 " vim-jsx settings (included with polyglot)
 let g:jsx_ext_required = 0
