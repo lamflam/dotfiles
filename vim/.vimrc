@@ -148,6 +148,10 @@ function! CustomBranchName(name)
     endif
 endfunction
 
+" YouCompleteMe Settings
+" let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
                                                                                    " All of your Plugins must be added before the following line
 call vundle#end()                                                                  " required for Vundle
 filetype plugin indent on                                                          " required for Vundle
