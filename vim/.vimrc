@@ -28,8 +28,9 @@ nmap <leader>q :bw<cr>                                                          
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
-nmap <leader>= :vertical resize +5<cr>                                            " Increase vertical split window
-nmap <leader>- :vertical resize -5<cr>                                            " Decrease vertical split window
+nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                           " Increase vertical split window
+nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                           " Decrease vertical split window
+nmap <leader>\| <C-w>=<cr>                                                        " auto resize splits
 
 " ----------------------------------------------------------------------------
 " CUSTOM COMMANDS AND FUNCTIONS
@@ -69,7 +70,6 @@ set noswapfile                                                                  
 set number                                                                         " show line numbers
 set ruler                                                                          " Always show current position
 set showmatch                                                                      " Show matching bracets when text indicator is over them
-set showcmd                                                                        " show information about the current command
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab                                 " no tabs
 set textwidth=120                                                                  " 120 max line length
 set ttimeoutlen=50                                                                 " Escape faster 
@@ -225,3 +225,6 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
+
+
+set showcmd                                                                        " show information about the current command
