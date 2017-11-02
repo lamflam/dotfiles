@@ -24,14 +24,15 @@ nmap ˚ :m -2<cr>
 nmap ∆ :m +1<cr>
 
 nmap <leader>f :ALEFix<cr>                                                        " \f to format
-nmap <leader>q :bw<cr>                                                            "p\q to close current window
-nmap <leader>d :bp\|bd #<cr>                                                       " \q delete current buffer but leave window open
+nmap <leader>q <C-w>q                                                             " \q to close current window
+nmap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
 nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                           " Increase vertical split window
 nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                           " Decrease vertical split window
 nmap <leader>\| <C-w>=                                                        " auto resize splits
+nmap <leader>m :Magit<cr>                                                        " Open magit window
 
 " ----------------------------------------------------------------------------
 " CUSTOM COMMANDS AND FUNCTIONS
