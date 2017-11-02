@@ -19,12 +19,13 @@ nmap <C-k> <C-W>k
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 
-" Ctrl+Shift j/k moves line up or down
-nmap <C-S-k> :m -2<cr>
-nmap <C-S-j> :m +1<cr>
+" Alt j/k moves line up or down
+nmap ˚ :m -2<cr>
+nmap ∆ :m +1<cr>
 
 nmap <leader>f :ALEFix<cr>                                                        " \f to format
-nmap <leader>q :bw<cr>                                                            " \q to close current window
+nmap <leader>q <C-W>c                                                            "p\q to close current window
+nmap <leader>d :bp\|bd #<cr>                                                       " \q delete current buffer but leave window open
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
@@ -59,7 +60,11 @@ set hlsearch                                                                    
 set ignorecase                                                                     " Case insensitive
 set incsearch                                                                      " Move forward while typing search
 set laststatus=2                                                                   " always have a status bar
-set mouse=a ttymouse=xterm2                                                        " enable mouse
+if has("mouse_sgr")                                                                " enable mouse
+    set mouse=a ttymouse=sgr
+else
+    set mouse=a ttymouse=xterm2
+endif
 set nobackup                                                                       " no backups
 set noerrorbells                                                                   " no beeping
 set nohidden                                                                       " dont unload my buffer
@@ -107,6 +112,7 @@ Plugin 'sheerun/vim-polyglot'                                                   
 Plugin 'jiangmiao/auto-pairs'                                                      " Bracket completion
 Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
 Plugin 'tpope/vim-surround'                                                        " better bracket commands
+Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
