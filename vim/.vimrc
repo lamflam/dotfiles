@@ -24,7 +24,7 @@ nmap ˚ :m -2<cr>
 nmap ∆ :m +1<cr>
 
 nmap <leader>f :ALEFix<cr>                                                        " \f to format
-nmap <leader>q <C-W>c                                                            "p\q to close current window
+nmap <leader>q :bw<cr>                                                            "p\q to close current window
 nmap <leader>d :bp\|bd #<cr>                                                       " \q delete current buffer but leave window open
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
