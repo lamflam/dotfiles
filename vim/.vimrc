@@ -14,10 +14,10 @@
 " Useful macros I use the most
 
 " Navigate windows quickly
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+" nmap <C-j> <C-W>j
+" nmap <C-k> <C-W>k
+" nmap <C-h> <C-W>h
+" nmap <C-l> <C-W>l
 
 " Alt j/k moves line up or down
 nmap ˚ :m -2<cr>
@@ -31,7 +31,7 @@ nmap <leader>t :Files<cr>                                                       
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
 nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                           " Increase vertical split window
 nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                           " Decrease vertical split window
-nmap <leader>\| <C-w>=<cr>                                                        " auto resize splits
+nmap <leader>\| <C-w>=                                                        " auto resize splits
 
 " ----------------------------------------------------------------------------
 " CUSTOM COMMANDS AND FUNCTIONS
@@ -54,7 +54,7 @@ set autoindent                                                                  
 set autoread                                                                       " read file when written externally
 set backspace=2                                                                    " allow backspace
 set clipboard=unnamed                                                              " use mac clipboard
-set cmdheight=2                                                                    " The commandbar height
+set cmdheight=1                                                                    " The commandbar height
 set cul                                                                            " highlight current line
 set hlsearch                                                                       " highlight search
 set ignorecase                                                                     " Case insensitive
