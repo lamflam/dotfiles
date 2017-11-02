@@ -113,6 +113,7 @@ Plugin 'jiangmiao/auto-pairs'                                                   
 Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
 Plugin 'tpope/vim-surround'                                                        " better bracket commands
 Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
+Plugin 'jreybert/vimagit'                                                          " Git helper
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
