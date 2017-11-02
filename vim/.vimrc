@@ -29,10 +29,12 @@ nmap <leader>d :bp\|bd #<cr>                                                    
 nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nmap <leader>t :Files<cr>                                                         " Search for files
 nmap <leader>r :Buffers<cr>                                                       " Search open buffers
-nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                           " Increase vertical split window
-nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                           " Decrease vertical split window
-nmap <leader>\| <C-w>=                                                        " auto resize splits
-nmap <leader>m :Magit<cr>                                                        " Open magit window
+nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
+nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
+nmap <leader>\| <C-w>=                                                            " auto resize splits
+nmap <leader>m :Magit<cr>                                                         " Open magit window
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>                    " got to definiton
+
 
 " ----------------------------------------------------------------------------
 " CUSTOM COMMANDS AND FUNCTIONS
@@ -169,7 +171,6 @@ endfunction
 
 " YouCompleteMe Settings
 " let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
                                                                                    " All of your Plugins must be added before the following line
 call vundle#end()                                                                  " required for Vundle
