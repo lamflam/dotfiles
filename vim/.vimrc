@@ -172,6 +172,10 @@ endfunction
 " YouCompleteMe Settings
 " let g:ycm_autoclose_preview_window_after_completion=1
 
+" Magit settings
+" Unset GPG_TTY to suppress Kryptonite messages on git commits within magit
+let g:magit_git_cmd="GPG_TTY= git"
+
                                                                                    " All of your Plugins must be added before the following line
 call vundle#end()                                                                  " required for Vundle
 filetype plugin indent on                                                          " required for Vundle
