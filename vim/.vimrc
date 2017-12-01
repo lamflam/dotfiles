@@ -14,26 +14,31 @@
 " Useful macros I use the most
 
 " Navigate windows quickly
-" nmap <C-j> <C-W>j
-" nmap <C-k> <C-W>k
-" nmap <C-h> <C-W>h
-" nmap <C-l> <C-W>l
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " Alt j/k moves line up or down
-nmap ˚ :m -2<cr>
-nmap ∆ :m +1<cr>
+nnoremap ˚ :m -2<cr>
+nnoremap ∆ :m +1<cr>
 
-nmap <leader>f :ALEFix<cr>                                                        " \f to format
-nmap <leader>q <C-w>q                                                             " \q to close current window
-nmap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
-nmap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
-nmap <leader>t :Files<cr>                                                         " Search for files
-nmap <leader>r :Buffers<cr>                                                       " Search open buffers
-nmap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
-nmap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
-nmap <leader>\| <C-w>=                                                            " auto resize splits
-nmap <leader>m :Magit<cr>                                                         " Open magit window
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>                    " got to definiton
+nnoremap <leader>f :ALEFix<cr>                                                        " \f to format
+nnoremap <leader>q <C-w>q                                                             " \q to close current window
+nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
+nnoremap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
+nnoremap <leader>t :Files<cr>                                                         " Search for files
+nnoremap <leader>r :Buffers<cr>                                                       " Search open buffers
+nnoremap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
+nnoremap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
+nnoremap <leader>\| <C-w>=                                                            " auto resize splits
+nnoremap <leader>m :Magit<cr>                                                         " Open magit window
+nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>                   " got to definiton
+nnoremap <leader>l :Extradite!<cr>                                                    " Open git commit viewer
+nnoremap  :vsp<cr>                                                                  " Vertical split
+nnoremap  :sp<cr>                                                                   " horizontal split
 
 
 " ----------------------------------------------------------------------------
@@ -117,6 +122,7 @@ Plugin 'Valloric/YouCompleteMe'                                                 
 Plugin 'tpope/vim-surround'                                                        " better bracket commands
 Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
 Plugin 'jreybert/vimagit'                                                          " Git helper
+Plugin 'int3/vim-extradite'                                                        " Git commit browser
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
