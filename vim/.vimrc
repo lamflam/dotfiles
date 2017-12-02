@@ -192,7 +192,7 @@ filetype plugin indent on                                                       
 
 syntax enable
 set background=dark
-colorscheme gruvbox
+silent! colorscheme gruvbox
 let g:is_bash=1                                                                    " treat shell as bash by default
 
 
