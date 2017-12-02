@@ -53,6 +53,10 @@ install_cmake() {
     brew install cmake
 }
 
+install_reattach-to-user-namespace() {
+    brew install reattach-to-user-namespace
+}
+
 install_link $DOTFILES_GIT_DIR $DOTFILES
 install_link $DOTFILES/bash/.bashrc $HOME/.bashrc
 install_link $DOTFILES/bash/.bash_profile $HOME/.bash_profile
@@ -69,6 +73,7 @@ install_command fzf
 install_command ag
 install_command node
 install_command cmake
+install_command reattach-to-user-namespace
 
 vim +PluginInstall +qall
 
