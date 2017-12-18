@@ -125,6 +125,7 @@ Plugin 'tpope/vim-surround'                                                     
 Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
 Plugin 'jreybert/vimagit'                                                          " Git helper
 Plugin 'int3/vim-extradite'                                                        " Git commit browser
+Plugin 'scrooloose/nerdcommenter'                                                  " Commenting
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
