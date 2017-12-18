@@ -156,7 +156,7 @@ let g:jsx_ext_required = 0
 
 " auto pairs settings
 " Don't jump to next line on closing tag
-let g:AutoPairsMultineClose = 0
+let g:AutoPairsMultilineClose = 0
 let g:AutoPairsCenterLine = 0
 let g:AutoPairsMapSpace = 0
 
