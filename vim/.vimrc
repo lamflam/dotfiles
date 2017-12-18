@@ -118,7 +118,9 @@ Plugin 'airblade/vim-gitgutter'                                                 
 Plugin 'tpope/vim-eunuch.git'                                                      " Unix shell commands, :Delete, :Move, :Rename
 Plugin 'sheerun/vim-polyglot'                                                      " Language packs
 Plugin 'jiangmiao/auto-pairs'                                                      " Bracket completion
+Plugin 'alvan/vim-closetag'                                                        " HTML/React tag closing
 Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
+Plugin 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
 Plugin 'tpope/vim-surround'                                                        " better bracket commands
 Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
 Plugin 'jreybert/vimagit'                                                          " Git helper
@@ -150,6 +152,9 @@ function! s:ag_with_opts(arg, bang)
 endfunction
 
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
+
+" vim-closetag auto close tags for js and md files
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.html.erb,*.md,*.jinja'
 
 " vim-jsx settings (included with polyglot)
 let g:jsx_ext_required = 0
