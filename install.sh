@@ -47,6 +47,7 @@ install_ag() {
 install_node() {
     brew install node
     npm install -g n
+    npm install -g yarn
 }
 
 install_cmake() {
