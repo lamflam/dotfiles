@@ -39,6 +39,7 @@ nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>             
 nnoremap <leader>l :Extradite!<cr>                                                    " Open git commit viewer
 nnoremap  :vsp<cr>                                                                  " Vertical split
 nnoremap  :sp<cr>                                                                   " horizontal split
+nnoremap <leader>b :Gblame<cr>                                                        " Git blame
 
 
 " ----------------------------------------------------------------------------
@@ -128,13 +129,14 @@ Plugin 'christoomey/vim-tmux-navigator'                                         
 Plugin 'jreybert/vimagit'                                                          " Git helper
 Plugin 'int3/vim-extradite'                                                        " Git commit browser
 Plugin 'scrooloose/nerdcommenter'                                                  " Commenting
+Plugin 'shime/vim-livedown'                                                        " Live markdown preview - requires 'npm install -g livedown'
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
 
 " ALE Settings
-let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ] }
-let g:ale_fixers = { 'javascript': [ 'prettier' ] }
+let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'markdown': [ 'prettier' ] }
+let g:ale_fixers = { 'javascript': [ 'prettier' ], 'scss': [ 'prettier', 'stylelint' ], 'markdown': [ 'prettier' ], 'json': [ 'prettier' ] }
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
@@ -157,7 +159,7 @@ endfunction
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
 
 " vim-closetag auto close tags for js and md files
-let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.html.erb,*.md,*.jinja'
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.jinja'
 
 " vim-jsx settings (included with polyglot)
 let g:jsx_ext_required = 0

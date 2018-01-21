@@ -6,4 +6,4 @@ alias gits='git status'
 alias ls='ls -al'
 
 # ag
-alias ag='ag -p $DOTFILES/ag/ignore'
+alias ag='ag -p $DOTFILES/ag/.ignore'
