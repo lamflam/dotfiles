@@ -64,6 +64,7 @@ set backspace=2                                                                 
 set clipboard=unnamed                                                              " use mac clipboard
 set cmdheight=1                                                                    " The commandbar height
 set cul                                                                            " highlight current line
+set exrc                                                                           " allow project .vimrc
 set hlsearch                                                                       " highlight search
 set ignorecase                                                                     " Case insensitive
 set incsearch                                                                      " Move forward while typing search
@@ -82,6 +83,7 @@ set noshowmode                                                                  
 set noswapfile                                                                     " no backups
 set number                                                                         " show line numbers
 set ruler                                                                          " Always show current position
+set secure                                                                         " Be safe with project specific vimrcs
 set showmatch                                                                      " Show matching bracets when text indicator is over them
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab                                 " no tabs
 set textwidth=120                                                                  " 120 max line length
