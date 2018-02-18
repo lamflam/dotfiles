@@ -23,3 +23,7 @@ source $DOTFILES/bash/prompt.sh
 source $DOTFILES/exports.sh
 source $DOTFILES/aliases.sh
 source $DOTFILES/fzf_setup.sh
+
+if [ -e $DOTFILES/bash/.localrc ]; then
+    source $DOTFILES/bash/.localrc
+fi
