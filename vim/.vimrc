@@ -25,6 +25,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap ˚ :m -2<cr>
 nnoremap ∆ :m +1<cr>
 
+nnoremap <leader>s :Ag<cr>                                                            "\s to search files
 nnoremap <leader>f :ALEFix<cr>                                                        " \f to format
 nnoremap <leader>q <C-w>q                                                             " \q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
