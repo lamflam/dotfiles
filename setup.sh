@@ -96,3 +96,9 @@ if [ ! -e $DOTFILES/.fonts_installed ]; then
 else
     echo "Fonts already installed"
 fi
+
+#
+#  Git config
+#
+# https://github.com/so-fancy/diff-so-fancy
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
