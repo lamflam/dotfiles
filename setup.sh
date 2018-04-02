@@ -65,6 +65,7 @@ install_link $DOTFILES/vim/.vim $HOME/.vim
 install_link $DOTFILES/vim/.vimrc $HOME/.vimrc
 install_link $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
 install_link $DOTFILES/tern/.tern-config $HOME/.tern-config
+install_link $DOTFILES/git/config $HOME/.customgitconfig
 
 
 install_command brew
@@ -96,14 +97,3 @@ if [ ! -e $DOTFILES/.fonts_installed ]; then
 else
     echo "Fonts already installed"
 fi
-
-#
-#  Git config
-#
-# https://github.com/so-fancy/diff-so-fancy
-git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.br branch
-git config --global alias.st status
-git config --global alias.master '!git checkout master && git pull && git sweep'

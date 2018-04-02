@@ -1,0 +1,34 @@
+#
+#  Git config
+#
+# https://github.com/so-fancy/diff-so-fancy
+[core]
+	editor = /usr/local/bin/vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[gpg]
+	program = /usr/local/bin/krgpg
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
+[rebase]
+	autosquash = true
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[pretty]
+    lg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	st = status
+    wip = !git add . && git commit -m wip --no-verify --no-gpg-sign
+    unwip = reset HEAD~1
+	master = !git checkout master && git pull && git sweep
+    lg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg
+    glg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg --graph
+    slg = stash list --date=format:'%y-%m-%d %H:%M' --pretty=reflg
+    blg = branch --format '%(color:red)%(objectname:short)%(color:reset) %(color:green)%(committerdate:iso)%(color:reset) %(subject) %(color:bold blue)-- %(authorname)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset)'
