@@ -24,7 +24,7 @@ parse_git_rebase_onto() {
 
   local onto=$(cat "$root/.git/rebase-apply/onto" 2> /dev/null || cat "$root/.git/rebase-merge/onto" 2> /dev/null)
   if [[ ! -z "$onto" ]]; then
-    local onto_name=$(git branch --contains $onto | tail -n1 | tr -d ' ')
+    local onto_name=$(git branch -a --contains $onto | tail -n1 | tr -d ' ' | sed -e 's/remotes\///')
     if [[ ! -z "$onto_name" ]]; then
       echo -n $onto_name
     else
@@ -41,7 +41,7 @@ parse_git_merge() {
 
   local merge=$(cat "$root/.git/MERGE_HEAD" 2> /dev/null)
   if [[ ! -z "$merge" ]]; then
-    local merge_name=$(git branch --contains $merge | tail -n1 | tr -d ' ')
+    local merge_name=$(git branch -a --contains $merge | tail -n1 | tr -d ' ' | sed -e 's/remotes\///')
     if [[ ! -z "$merge_name" ]]; then
       echo -n $merge_name
     else
