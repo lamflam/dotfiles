@@ -236,7 +236,13 @@ __gitcomp ()
 __gitcomp_nl_append ()
 {
 	local IFS=$'\n'
-	__gitcompappend "$1" "${2-}" "${3-$cur}" "${4- }"
+    local matches=$(echo "${1}" | grep "${cur//\//.*/}")
+    local matchcur=$(echo "${cur}" | cut -d/ -f1)
+    if [[ -z $matches ]]; then 
+	    __gitcompappend "${1}" "${2-}" "${3-$cur}" "${4- }"
+    else
+	    __gitcompappend "$matches" "${2-}" "${matchcur}" "${4- }"
+    fi
 }
 
 # Generates completion reply from newline-separated possible completion words
