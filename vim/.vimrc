@@ -77,6 +77,7 @@ else
     set mouse=a ttymouse=xterm2
 endif
 set nobackup                                                                       " no backups
+set nocursorline                                                                   " cursorline can really slow down perf because it redraws the whole screen
 set noerrorbells                                                                   " no beeping
 set nohidden                                                                       " dont unload my buffer
 set nolazyredraw                                                                   " Don't redraw while executing macros
