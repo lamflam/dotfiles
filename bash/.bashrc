@@ -1,8 +1,12 @@
-
 export DOTFILES=$HOME/.dotfiles
-[[ ":$PATH:" != *":${DOTFILES}/bin:"* ]] && PATH="${DOTFILES}/bin:${PATH}"
-[[ ":$PATH:" != *":${HOME}/bin:"* ]] && PATH="${HOME}/bin:${PATH}"
-[[ ":$PATH:" != *":${HOME}/.local/bin:"* ]] && PATH="${HOME}/.local/bin:${PATH}"
+
+add_to_path() {
+    [[ ":$PATH:" != *":${1}:"* ]] && PATH="${1}:${PATH}"
+}
+
+add_to_path "${DOTFILES}/bin"
+add_to_path "${HOME}/bin"
+add_to_path "${HOME}/.local/bin"
 
 # fzf via Homebrew
 if [ -e /usr/local/opt/fzf/shell/completion.bash ]; then
