@@ -7,3 +7,5 @@ alias ls='ls -al'
 
 # ag
 alias ag='ag -p $DOTFILES/ag/.ignore'
+
+alias sed='gsed'
