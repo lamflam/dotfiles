@@ -68,9 +68,6 @@ install_link $DOTFILES/bash/.bash_profile $HOME/.bash_profile
 install_link $DOTFILES/vim/.vim $HOME/.vim
 install_link $DOTFILES/vim/.vimrc $HOME/.vimrc
 install_link $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
-install_link $DOTFILES/tern/.tern-config $HOME/.tern-config
-install_link $DOTFILES/git/config $HOME/.customgitconfig
-
 
 install_command brew
 install_command kr
