@@ -86,7 +86,7 @@ vim +PluginInstall +qall
 
 if [ ! -e $DOTFILES/.ycm_installed ]; then
     pushd ~/.vim/bundle/YouCompleteMe > /dev/null
-    ./install.py --clang-completer --js-completer && touch $DOTFILES/.ycm_installed
+    ./install.py --clang-completer && touch $DOTFILES/.ycm_installed
     popd > /dev/null
 else
     echo "YouCompleteMe already built"
