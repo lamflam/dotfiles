@@ -69,6 +69,8 @@ install_link $DOTFILES/vim/.vim $HOME/.vim
 install_link $DOTFILES/vim/.vimrc $HOME/.vimrc
 install_link $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
 
+git config --global include.path "$DOTFILES/git/config"
+
 install_command brew
 install_command kr
 install_command tmux
