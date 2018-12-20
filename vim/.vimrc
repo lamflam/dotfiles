@@ -138,7 +138,7 @@ Plugin 'shime/vim-livedown'                                                     
 
 " ALE Settings
 let g:ale_linters = { 'javascript': [ 'eslint', 'prettier' ], 'markdown': [ 'prettier' ], 'python': [ 'autopep8', 'flake8' ] }
-let g:ale_fixers = { 'javascript': [ 'prettier' ], 'scss': [ 'prettier', 'stylelint' ], 'markdown': [ 'prettier' ], 'json': [ 'prettier' ], 'python': [ 'autopep8' ] }
+let g:ale_fixers = { 'javascript': [ 'prettier' ], 'scss': [ 'prettier', 'stylelint' ], 'markdown': [ 'prettier' ], 'json': [ 'prettier' ], 'python': [ 'black', 'autopep8' ] }
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
