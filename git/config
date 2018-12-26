@@ -21,9 +21,10 @@
     lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
     reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
 [alias]
+	br = branch
 	co = checkout
 	ci = commit
-	br = branch
+    df = diff -- ':!package-lock.json'
 	st = status
     wip = !git add . && git commit -m wip --no-verify --no-gpg-sign
     unwip = reset HEAD~1
