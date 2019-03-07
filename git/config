@@ -25,6 +25,7 @@
 	co = checkout
 	ci = commit
     df = diff -- ':!package-lock.json'
+    dff = diff --name-only
 	st = status
     wip = !git add . && git commit -m wip --no-verify --no-gpg-sign
     unwip = reset HEAD~1
