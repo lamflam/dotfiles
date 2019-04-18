@@ -132,6 +132,7 @@ Plugin 'jreybert/vimagit'                                                       
 Plugin 'int3/vim-extradite'                                                        " Git commit browser
 Plugin 'scrooloose/nerdcommenter'                                                  " Commenting
 Plugin 'shime/vim-livedown'                                                        " Live markdown preview - requires 'npm install -g livedown'
+Plugin 'ruanyl/vim-gh-line'                                                        " Generate github link for current line/selection
 " Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'itchyny/lightline.vim'                                                   " Status line
 " Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
@@ -158,6 +159,11 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
+
+" vim-gh-line settings
+let g:gh_line_map = '<leader>h'
+let g:gh_line_blame_map = '<leader>hh'
+let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 " fzf/ack settings
 let g:ackprg = 'ag --vimgrep'
