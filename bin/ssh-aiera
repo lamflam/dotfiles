@@ -1,3 +1,4 @@
 #!/bin/bash
 
 ssh -t -i ~/.ssh/aiera.pem ec2-user@`aws-get-internal-host $1` "cd /opt/python/current; source ./env; cd app; /bin/bash"
+# ssh -t -i ~/.ssh/aiera.pem ec2-user@`aws-get-internal-host $1` bash

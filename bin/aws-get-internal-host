@@ -1,2 +1,2 @@
 #!/bin/bash
-echo `aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag:Name,Values=$1" | jq -r .Reservations[].Instances[].NetworkInterfaces[].PrivateDnsName`
+echo `aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" "Name=tag:Name,Values=$1" | jq -r .Reservations[0].Instances[].NetworkInterfaces[].PrivateDnsName`

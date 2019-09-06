@@ -141,7 +141,7 @@ Plugin 'ruanyl/vim-gh-line'                                                     
 let g:ale_linters = {
 \   'javascript': [ 'eslint', 'prettier' ],
 \   'markdown': [ 'prettier' ],
-\   'python': [ 'autopep8', 'flake8' ]
+\   'python': [ 'flake8' ]
 \}
 
 let g:ale_fixers = {
@@ -153,7 +153,7 @@ let g:ale_fixers = {
 \   'html': [ 'prettier' ]
 \}
 
-let g:ale_python_flake8_executable = 'python3'
+" let g:ale_python_flake8_executable = 'python3'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
