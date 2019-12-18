@@ -30,6 +30,7 @@ nnoremap <leader>f :ALEFix<cr>                                                  
 nnoremap <leader>q <C-w>q                                                             " \q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
 nnoremap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
+nnoremap <leader>DA :%bdelete!<cr>                                                    " \DA to force close all buffers
 nnoremap <leader>t :Files<cr>                                                         " Search for files
 nnoremap <leader>r :Buffers<cr>                                                       " Search open buffers
 nnoremap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
@@ -145,7 +146,7 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\   'javascript': [ 'prettier' ], 
+\   'javascript': [ 'eslint', 'prettier' ], 
 \   'scss': [ 'prettier', 'stylelint' ], 
 \   'markdown': [ 'prettier' ], 
 \   'json': [ 'prettier' ], 
