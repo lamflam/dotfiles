@@ -3,3 +3,4 @@ bash/.localrc
 .*_installed
 tmux*.log
 vim/.vim/.netrwhist
+vim/.vim/plugged

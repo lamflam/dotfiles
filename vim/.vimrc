@@ -105,40 +105,37 @@ set nocompatible                                                                
 filetype off                                                                       " required for Vundle
 
                                                                                    "  Vundle bootstrap
-set rtp+=~/.vim/bundle/Vundle.vim                                                  " set the runtime path to include Vundle and initialize
-let s:bootstrap = 0
-try
-    call vundle#begin()
-catch /E117:/
-    let s:bootstrap = 1
-    !unset GIT_DIR && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    redraw!
-    call vundle#begin()
-endtry
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'                                                      " let Vundle manage Vundle, required
-Plugin 'w0rp/ale'                                                                  " Linter
-Plugin 'junegunn/fzf.vim'
-Plugin 'morhetz/gruvbox'                                                           " Main colorscheme
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
-Plugin 'tpope/vim-eunuch.git'                                                      " Unix shell commands, :Delete, :Move, :Rename
-Plugin 'sheerun/vim-polyglot'                                                      " Language packs
-Plugin 'jiangmiao/auto-pairs'                                                      " Bracket completion
-Plugin 'alvan/vim-closetag'                                                        " HTML/React tag closing
-Plugin 'Valloric/YouCompleteMe'                                                    " Auto completetion
-Plugin 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
-Plugin 'tpope/vim-surround'                                                        " better bracket commands
-Plugin 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
-Plugin 'jreybert/vimagit'                                                          " Git helper
-Plugin 'int3/vim-extradite'                                                        " Git commit browser
-Plugin 'scrooloose/nerdcommenter'                                                  " Commenting
-Plugin 'shime/vim-livedown'                                                        " Live markdown preview - requires 'npm install -g livedown'
-Plugin 'ruanyl/vim-gh-line'                                                        " Generate github link for current line/selection
-" Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'itchyny/lightline.vim'                                                   " Status line
-" Plugin 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+
+Plug 'VundleVim/Vundle.vim'                                                      " let Vundle manage Vundle, required
+Plug 'w0rp/ale'                                                                  " Linter
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'                                                           " Main colorscheme
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
+Plug 'tpope/vim-eunuch'                                                          " Unix shell commands, :Delete, :Move, :Rename
+Plug 'sheerun/vim-polyglot'                                                      " Language packs
+Plug 'jiangmiao/auto-pairs'                                                      " Bracket completion
+Plug 'alvan/vim-closetag'                                                        " HTML/React tag closing
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }                    " Auto completetion
+Plug 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
+Plug 'tpope/vim-surround'                                                        " better bracket commands
+Plug 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
+Plug 'jreybert/vimagit'                                                          " Git helper
+Plug 'int3/vim-extradite'                                                        " Git commit browser
+Plug 'scrooloose/nerdcommenter'                                                  " Commenting
+Plug 'shime/vim-livedown'                                                        " Live markdown preview - requires 'npm install -g livedown'
+Plug 'ruanyl/vim-gh-line'                                                        " Generate github link for current line/selection
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'                                                   " Status line
+" Plug 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
 
 " ALE Settings
 let g:ale_linters = {
@@ -220,8 +217,7 @@ endfunction
 let g:magit_git_cmd="GPG_TTY= git"
 
                                                                                    " All of your Plugins must be added before the following line
-call vundle#end()                                                                  " required for Vundle
-filetype plugin indent on                                                          " required for Vundle
+call plug#end()
 
 " ----------------------------------------------------------------------------
 " COLORS
