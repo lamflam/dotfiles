@@ -27,8 +27,10 @@ nnoremap ∆ :m +1<cr>
 
 nnoremap <leader>s :Ag<cr>                                                            "\s to search files
 nnoremap <leader>f :ALEFix<cr>                                                        " \f to format
-nnoremap <leader>q <C-w>q                                                             " \q to close current window
+nnoremap <leader>q :close<cr>                                                         " \q to close current window
+nnoremap <leader>Q :close!<cr>                                                        " \Q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
+nnoremap <leader>D :bp!\|bd! #<cr>                                                    " \D delete current buffer but leave window open
 nnoremap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nnoremap <leader>DA :%bdelete!<cr>                                                    " \DA to force close all buffers
 nnoremap <leader>t :Files<cr>                                                         " Search for files
@@ -146,12 +148,14 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\   'javascript': [ 'eslint', 'prettier' ], 
+\   'javascript': [ 'prettier', 'eslint' ], 
+\   'typescript': [ 'prettier', 'tslint' ], 
 \   'scss': [ 'prettier', 'stylelint' ], 
 \   'markdown': [ 'prettier' ], 
 \   'json': [ 'prettier' ], 
 \   'python': [ 'black', 'autopep8' ],
-\   'html': [ 'prettier' ]
+\   'html': [ 'prettier' ],
+\   'go': [ 'gofmt' ]
 \}
 
 " let g:ale_python_flake8_executable = 'python3'
