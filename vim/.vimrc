@@ -26,7 +26,6 @@ nnoremap ˚ :m -2<cr>
 nnoremap ∆ :m +1<cr>
 
 nnoremap <leader>s :Ag<cr>                                                            "\s to search files
-nnoremap <leader>f :ALEFix<cr>                                                        " \f to format
 nnoremap <leader>q :close<cr>                                                         " \q to close current window
 nnoremap <leader>Q :close!<cr>                                                        " \Q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
@@ -39,11 +38,39 @@ nnoremap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>            
 nnoremap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
 nnoremap <leader>\| <C-w>=                                                            " auto resize splits
 nnoremap <leader>m :Magit<cr>                                                         " Open magit window
-nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>                   " got to definiton
 nnoremap <leader>l :Extradite!<cr>                                                    " Open git commit viewer
 nnoremap  :vsp<cr>                                                                  " Vertical split
 nnoremap  :sp<cr>                                                                   " horizontal split
 nnoremap <leader>b :Gblame<cr>                                                        " Git blame
+
+" nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
+nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
+
+nmap <leader>ca  <Plug>(coc-codeaction)
+
+nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
+autocmd FileType typescript nmap <buffer> <leader>f :CocCommand tslint.fixAllProblems<cr>
+autocmd FileType javascript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+set completeopt=longest,menuone
+set updatetime=300
 
 
 " ----------------------------------------------------------------------------
@@ -82,8 +109,8 @@ endif
 set nobackup                                                                       " no backups
 set nocursorline                                                                   " cursorline can really slow down perf because it redraws the whole screen
 set noerrorbells                                                                   " no beeping
-set nohidden                                                                       " dont unload my buffer
-set nolazyredraw                                                                   " Don't redraw while executing macros
+set hidden                                                                         " dont unload my buffer
+set lazyredraw                                                                     " Don't redraw while executing macros
 set nowritebackup                                                                  " no backups
 set noshowmode                                                                     " lightline handles this
 set noswapfile                                                                     " no backups
@@ -113,8 +140,7 @@ function! BuildYCM(info)
   endif
 endfunction
 
-Plug 'VundleVim/Vundle.vim'                                                      " let Vundle manage Vundle, required
-Plug 'w0rp/ale'                                                                  " Linter
+" Plug 'w0rp/ale'                                                                  " Linter
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'                                                           " Main colorscheme
 Plug 'tpope/vim-fugitive'
@@ -124,7 +150,8 @@ Plug 'tpope/vim-eunuch'                                                         
 Plug 'sheerun/vim-polyglot'                                                      " Language packs
 Plug 'jiangmiao/auto-pairs'                                                      " Bracket completion
 Plug 'alvan/vim-closetag'                                                        " HTML/React tag closing
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }                    " Auto completetion
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }                    " Auto completetion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
 Plug 'tpope/vim-surround'                                                        " better bracket commands
 Plug 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
@@ -137,30 +164,9 @@ Plug 'ruanyl/vim-gh-line'                                                       
 " Plug 'itchyny/lightline.vim'                                                   " Status line
 " Plug 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
 
-" ALE Settings
-let g:ale_linters = {
-\   'javascript': [ 'eslint', 'prettier' ],
-\   'markdown': [ 'prettier' ],
-\   'python': [ 'flake8' ]
-\}
+                                                                                 " All of your Plugins must be added before the following line
+call plug#end()
 
-let g:ale_fixers = {
-\   'javascript': [ 'prettier', 'eslint' ], 
-\   'typescript': [ 'prettier', 'tslint' ], 
-\   'scss': [ 'prettier', 'stylelint' ], 
-\   'markdown': [ 'prettier' ], 
-\   'json': [ 'prettier' ], 
-\   'python': [ 'black', 'autopep8' ],
-\   'html': [ 'prettier' ],
-\   'go': [ 'gofmt' ]
-\}
-
-" let g:ale_python_flake8_executable = 'python3'
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
 
 " vim-gh-line settings
 let g:gh_line_map = '<leader>h'
@@ -198,12 +204,12 @@ let g:AutoPairsMapSpace = 0
 let g:airline_powerline_fonts = 1
 " Don't show the format if it's just a standard file
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_extensions = ['branch', 'ale']
+let g:airline_extensions = ['branch', 'coc']
 let g:airline#extensions#branch#format = 'CustomBranchName'
 function! CustomBranchName(name)
-    let a:parts = split(a:name, '/')
-    if len(a:parts) == 3
-        return a:parts[0][0] . '/' . strpart(a:parts[1], 2) . '/' . a:parts[2]
+    let l:parts = split(a:name, '/')
+    if len(l:parts) == 3
+        return l:parts[0][0] . '/' . strpart(l:parts[1], 2) . '/' . l:parts[2]
     else
         return a:name
     endif
@@ -216,8 +222,7 @@ endfunction
 " Unset GPG_TTY to suppress Kryptonite messages on git commits within magit
 let g:magit_git_cmd="GPG_TTY= git"
 
-                                                                                   " All of your Plugins must be added before the following line
-call plug#end()
+
 
 " ----------------------------------------------------------------------------
 " COLORS
@@ -228,55 +233,7 @@ set background=dark
 silent! colorscheme gruvbox
 let g:is_bash=1                                                                    " treat shell as bash by default
 
-
-" ----------------------------------------------------------------------------
-" NO LONGER USED
-" ----------------------------------------------------------------------------
-
-" Lightline
-let g:lightline = {
-\ 'colorscheme': 'gruvbox',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
-
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
-autocmd User ALELint call s:MaybeUpdateLightline()
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
-
+hi CocWarningSign ctermfg=Yellow guifg=#ff922b
+hi CocErrorSign ctermfg=Red guifg=#ff0000
 
 set showcmd                                                                        " show information about the current command

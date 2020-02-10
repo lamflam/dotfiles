@@ -1,0 +1,8 @@
+{
+    "suggest.echodocSupport": true,
+    "coc.preferences.jumpCommand": "vsplit",
+    "python.formatting.provider": "black",
+    "diagnostic.signOffset": 9999999,
+    "diagnostic.errorSign": "►",
+    "diagnostic.warningSign": "►"
+}
