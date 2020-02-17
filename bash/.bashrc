@@ -1,3 +1,4 @@
+export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
 
 add_to_path() {
