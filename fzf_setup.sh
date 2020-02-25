@@ -60,5 +60,12 @@ gr() {
   cut -d$'\t' -f1
 }
 
+gd() {
+  is_in_git_repo || return
+  git diff $@ --name-only | fzf -m --ansi --preview 'git diff $@ --color=always {-1}'
+}
+
 bind '"\er": redraw-current-line'
 bind '"\C-b": "$(gb)\e\C-e\er"' 
+
+
