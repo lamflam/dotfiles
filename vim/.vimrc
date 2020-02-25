@@ -55,8 +55,7 @@ nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
 nmap <leader>ca  <Plug>(coc-codeaction)
 
 nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
-autocmd FileType typescript nmap <buffer> <leader>f :CocCommand tslint.fixAllProblems<cr>
-autocmd FileType javascript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>
+autocmd FileType javascript,typescript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
 
 function! s:check_back_space() abort
   let col = col('.') - 1
