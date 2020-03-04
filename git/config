@@ -30,6 +30,7 @@
     wip = !git add . && git commit -m wip --no-verify --no-gpg-sign
     unwip = reset HEAD~1
 	master = !git checkout master && git pull && git sweep
+    sweep =  !git branch --merged master | grep -v master | xargs git branch -d
     lg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg
     glg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg --graph
     slg = stash list --date=format:'%y-%m-%d %H:%M' --pretty=reflg
