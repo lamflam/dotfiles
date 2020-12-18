@@ -175,7 +175,7 @@ let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 " fzf/ack settings
 let g:ackprg = 'ag --vimgrep'
 set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
+" set rtp+=~/.fzf
 
 function! s:ag_with_opts(arg, bang)
   let tokens  = split(a:arg)
