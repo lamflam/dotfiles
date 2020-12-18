@@ -15,7 +15,6 @@ parse_git_rebase_branch() {
       || cat "$root/.git/rebase-merge/head-name" 2> /dev/null \
       | sed -e 's/refs\/heads\///'
 }
-
 parse_git_rebase_onto() {
   local root=$(git rev-parse --show-toplevel 2> /dev/null)
   if [[ -z $root ]]; then
@@ -93,8 +92,18 @@ parse_dir() {
   fi
 }
 
+check_history() {
+  history -a
+  if [[ "$HISTFILE" != "$HOME/.bash_history.d/$PWD" ]]; then 
+    mkdir -p "$HOME/.bash_history.d/${PWD%/*}"
+    HISTFILE="$HOME/.bash_history.d/$PWD"
+    history -r
+  fi
+}
+
 set_prompt() {
-    PS1="\[${blue}\]$(parse_dir)\[${yellow}\]$(parse_git_branch)\[${normal}\]» "
+  check_history
+  PS1="\[${blue}\]$(parse_dir)\[${yellow}\]$(parse_git_branch)\[${normal}\]» "
 }
 
 export PROMPT_COMMAND=set_prompt
