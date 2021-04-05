@@ -141,7 +141,8 @@ endfunction
 
 " Plug 'w0rp/ale'                                                                  " Linter
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'                                                           " Main colorscheme
+" Plug 'morhetz/gruvbox'                                                           " Main colorscheme
+Plug 'arcticicestudio/nord-vim'                                                  " Main colorscheme
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
@@ -229,7 +230,7 @@ let g:magit_git_cmd="GPG_TTY= git"
 
 syntax enable
 set background=dark
-silent! colorscheme gruvbox
+silent! colorscheme nord
 let g:is_bash=1                                                                    " treat shell as bash by default
 
 hi CocWarningSign ctermfg=Yellow guifg=#ff922b
