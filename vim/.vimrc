@@ -25,15 +25,15 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap ˚ :m -2<cr>
 nnoremap ∆ :m +1<cr>
 
-nnoremap <leader>s :Ag<cr>                                                            "\s to search files
+nnoremap <leader>s :Ag<cr>
 nnoremap <leader>q :close<cr>                                                         " \q to close current window
 nnoremap <leader>Q :close!<cr>                                                        " \Q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
 nnoremap <leader>D :bp!\|bd! #<cr>                                                    " \D delete current buffer but leave window open
 nnoremap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nnoremap <leader>DA :%bdelete!<cr>                                                    " \DA to force close all buffers
-nnoremap <leader>t :Files<cr>                                                         " Search for files
-nnoremap <leader>r :Buffers<cr>                                                       " Search open buffers
+nnoremap <leader>t :Files<cr>
+nnoremap <leader>r :Buffers<cr>
 nnoremap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
 nnoremap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
 nnoremap <leader>\| <C-w>=                                                            " auto resize splits
@@ -140,6 +140,7 @@ function! BuildYCM(info)
 endfunction
 
 " Plug 'w0rp/ale'                                                                  " Linter
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'                                                           " Main colorscheme
 Plug 'tpope/vim-fugitive'
@@ -182,7 +183,8 @@ function! s:ag_with_opts(arg, bang)
   call insert(tokens, '--hidden')
   let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
   let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+  " call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
+  call fzf#vim#ag(query, ag_opts, {})
 endfunction
 
 autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
