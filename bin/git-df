@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+git diff $@ --name-only \
+      | grep -v package-lock.json \
+      | fzf -m --ansi --preview-window right:70% --preview "git diff $@ --color=always -- {-1}"
+

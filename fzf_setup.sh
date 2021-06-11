@@ -7,6 +7,9 @@ if type fzf >/dev/null 2>&1 && type ag >/dev/null 2>&1; then
   export FZF_DEFAULT_OPTS='
   --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
   --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+  --bind ctrl-alt-k:preview-up,ctrl-alt-j:preview-down
+  --bind alt-up:preview-up,alt-down:preview-down
+  --bind pgup:preview-page-up,pgdn:preview-page-down
   '
 fi
 
@@ -58,11 +61,6 @@ gr() {
   fzf-down --tac \
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
   cut -d$'\t' -f1
-}
-
-gd() {
-  is_in_git_repo || return
-  git diff $@ --name-only | fzf -m --ansi --preview "git diff $@ --color=always {-1}"
 }
 
 bind '"\er": redraw-current-line'

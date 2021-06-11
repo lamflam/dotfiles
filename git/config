@@ -24,7 +24,6 @@
 	br = branch
 	co = checkout
 	ci = commit
-    df = diff -- ':!package-lock.json'
     dff = diff --name-only
 	st = status
     wip = !git add . && git commit -m wip --no-verify --no-gpg-sign
@@ -35,3 +34,6 @@
     glg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg --graph
     slg = stash list --date=format:'%y-%m-%d %H:%M' --pretty=reflg
     blg = branch --format '%(color:red)%(objectname:short)%(color:reset) %(color:green)%(committerdate:iso)%(color:reset) %(subject) %(color:bold blue)-- %(authorname)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset)'
+	prod = "!f() { if [ -z $1 ]; then git tag -l | grep prod | sort -r | head -n 1; else git tag -l --contains $1 | grep prod | sort | head -n 1; fi }; f"
+	staging = "!f() { if [ -z $1 ]; then git tag -l | grep staging | sort -r | head -n 1; else git tag -l --contains $1 | grep staging | sort | head -n 1; fi }; f"
+	dev = "!f() { if [ -z $1 ]; then git tag -l | grep dev | sort -r | head -n 1; else git tag -l --contains $1 | grep dev | sort | head -n 1; fi }; f"

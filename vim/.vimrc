@@ -25,15 +25,18 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap ˚ :m -2<cr>
 nnoremap ∆ :m +1<cr>
 
-nnoremap <leader>s :Ag<cr>
+nnoremap <leader>s :Rg<cr>
+nnoremap <leader>S :Lines<cr>
+nnoremap <leader>t :Files<cr>
+nnoremap <leader>T :Buffers<cr>
+nnoremap <leader>c :Commits<cr>
+nnoremap <leader>g :GFiles?<cr>
 nnoremap <leader>q :close<cr>                                                         " \q to close current window
 nnoremap <leader>Q :close!<cr>                                                        " \Q to close current window
 nnoremap <leader>d :bp\|bd #<cr>                                                      " \d delete current buffer but leave window open
 nnoremap <leader>D :bp!\|bd! #<cr>                                                    " \D delete current buffer but leave window open
 nnoremap <leader>da :%bdelete<cr>                                                     " \da to close all buffers
 nnoremap <leader>DA :%bdelete!<cr>                                                    " \DA to force close all buffers
-nnoremap <leader>t :Files<cr>
-nnoremap <leader>r :Buffers<cr>
 nnoremap <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<cr>                  " Increase vertical split window
 nnoremap <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<cr>                  " Decrease vertical split window
 nnoremap <leader>\| <C-w>=                                                            " auto resize splits
@@ -52,10 +55,12 @@ nmap <silent> <leader>gr <Plug>(coc-references)
 nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
 
-nmap <leader>ca  <Plug>(coc-codeaction)
+nnoremap <leader>a  <Plug>(coc-codeaction-selected)
 
 nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
 autocmd FileType javascript,typescript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
+
+autocmd BufEnter * :syntax sync minlines=2000
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -139,8 +144,6 @@ function! BuildYCM(info)
   endif
 endfunction
 
-" Plug 'w0rp/ale'                                                                  " Linter
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'                                                           " Main colorscheme
 Plug 'tpope/vim-fugitive'
@@ -150,7 +153,6 @@ Plug 'tpope/vim-eunuch'                                                         
 Plug 'sheerun/vim-polyglot'                                                      " Language packs
 Plug 'jiangmiao/auto-pairs'                                                      " Bracket completion
 Plug 'alvan/vim-closetag'                                                        " HTML/React tag closing
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }                    " Auto completetion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
 Plug 'tpope/vim-surround'                                                        " better bracket commands
@@ -160,10 +162,6 @@ Plug 'int3/vim-extradite'                                                       
 Plug 'scrooloose/nerdcommenter'                                                  " Commenting
 Plug 'shime/vim-livedown'                                                        " Live markdown preview - requires 'npm install -g livedown'
 Plug 'ruanyl/vim-gh-line'                                                        " Generate github link for current line/selection
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'itchyny/lightline.vim'                                                   " Status line
-" Plug 'altercation/vim-colors-solarized'                                        " A really nice colorscheme
-
                                                                                  " All of your Plugins must be added before the following line
 call plug#end()
 
@@ -177,17 +175,6 @@ let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 let g:ackprg = 'ag --vimgrep'
 set rtp+=/usr/local/opt/fzf
 " set rtp+=~/.fzf
-
-function! s:ag_with_opts(arg, bang)
-  let tokens  = split(a:arg)
-  call insert(tokens, '--hidden')
-  let ag_opts = join(filter(copy(tokens), 'v:val =~ "^-"'))
-  let query   = join(filter(copy(tokens), 'v:val !~ "^-"'))
-  " call fzf#vim#ag(query, ag_opts, a:bang ? {} : {'down': '40%'})
-  call fzf#vim#ag(query, ag_opts, {})
-endfunction
-
-autocmd VimEnter * command! -nargs=* -bang Ag call s:ag_with_opts(<q-args>, <bang>0)
 
 " vim-closetag auto close tags for js and md files
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md,*.jinja'
