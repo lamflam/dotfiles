@@ -5,8 +5,8 @@
 [core]
 	editor = /usr/local/bin/vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
-[gpg]
-	program = /usr/local/bin/krgpg
+# [gpg]
+# 	program = /usr/local/bin/krgpg
 [commit]
 	gpgSign = true
 [tag]
@@ -17,9 +17,9 @@
 	tool = vimdiff
 	conflictstyle = diff3
 [pretty]
-    lg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
-    lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
-    reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
+    lg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
 [alias]
 	br = branch
 	co = checkout
