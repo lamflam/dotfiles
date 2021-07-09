@@ -1,7 +1,7 @@
 
 # fzf + ag configuration
 if type fzf >/dev/null 2>&1 && type ag >/dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='ag --hidden --nocolor -g ""'
+  export FZF_DEFAULT_COMMAND="rg --hidden --files -g '!.git/'"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_DEFAULT_OPTS='

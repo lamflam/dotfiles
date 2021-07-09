@@ -7,6 +7,7 @@ alias ls='ls -alh'
 
 # ag
 alias ag='ag -p $DOTFILES/ag/.ignore'
+alias rg="rg -g '!.git/'"
 
 alias sed='gsed'
 
