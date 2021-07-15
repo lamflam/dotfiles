@@ -1,4 +1,6 @@
+set -o vi
 export EDITOR=vim
+export VISUAL=vim
 export DOTFILES=$HOME/.dotfiles
 
 add_to_path() {
