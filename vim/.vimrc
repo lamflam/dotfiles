@@ -25,6 +25,8 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap ˚ :m -2<cr>
 nnoremap ∆ :m +1<cr>
 
+
+
 nnoremap <leader>s :Rg<cr>
 nnoremap <leader>S :Lines<cr>
 nnoremap <leader>t :Files<cr>
@@ -46,25 +48,44 @@ nnoremap  :vsp<cr>                                                             
 nnoremap  :sp<cr>                                                                   " horizontal split
 nnoremap <leader>b :Gblame<cr>                                                        " Git blame
 
-" nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> gd :call CocAction('jumpDefinition', v:false)<CR>
+nmap <silent> gy :call CocAction('jumpTypeDefinition', v:false)<CR>
+nmap <silent> gi :call CocAction('jumpImplementation', v:false)<CR>
+nmap <silent> gr :call CocAction('jumpReferences', v:false)<CR>
 
 nmap <silent> <leader>e <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>E <Plug>(coc-diagnostic-prev)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-nnoremap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>n <Plug>(coc-rename)
 
 nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
 autocmd FileType javascript,typescript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
 
 autocmd BufEnter * :syntax sync minlines=2000
 
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
 endfunction
 
 inoremap <silent><expr> <Tab>
@@ -144,9 +165,11 @@ function! BuildYCM(info)
   endif
 endfunction
 
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'                                                           " Main colorscheme
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'                                                    " Show git +/- on left of editor
 Plug 'tpope/vim-eunuch'                                                          " Unix shell commands, :Delete, :Move, :Rename
@@ -154,6 +177,7 @@ Plug 'sheerun/vim-polyglot'                                                     
 Plug 'jiangmiao/auto-pairs'                                                      " Bracket completion
 Plug 'alvan/vim-closetag'                                                        " HTML/React tag closing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf'
 Plug 'Valloric/MatchTagAlways'                                                   " HTML/React tag context highlighting
 Plug 'tpope/vim-surround'                                                        " better bracket commands
 Plug 'christoomey/vim-tmux-navigator'                                            " better nav for vim+tmux
@@ -202,6 +226,7 @@ function! CustomBranchName(name)
         return a:name
     endif
 endfunction
+
 
 " YouCompleteMe Settings
 " let g:ycm_autoclose_preview_window_after_completion=1

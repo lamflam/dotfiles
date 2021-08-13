@@ -34,3 +34,5 @@ source $DOTFILES/fzf_setup.sh
 if [ -e $DOTFILES/bash/.localrc ]; then
     source $DOTFILES/bash/.localrc
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

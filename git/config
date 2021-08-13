@@ -17,9 +17,10 @@
 	tool = vimdiff
 	conflictstyle = diff3
 [pretty]
-    lg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
-    lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
-    reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
+    lg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+	lgs = %C(red)%h%C(reset) %C(green)%cd%C(reset) %C(bold blue)%G?%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    lge = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an <%ae>%C(reset)%C(green)%cr%C(reset))%C(yellow)%d%C(reset)
+    reflg = %C(red)%h%C(reset) %C(green)%cd%C(reset) %s (%C(bold blue)%an %C(reset)%C(green)%cr%C(reset))%C(yellow)(%gd)%C(reset)
 [alias]
 	br = branch
 	co = checkout
@@ -31,6 +32,7 @@
 	master = !git checkout master && git pull && git sweep
     sweep =  !git branch --merged master | grep -v master | xargs git branch -d
     lg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg
+    lgs = log --date=format:'%y-%m-%d %H:%M' --pretty=lgs
     glg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg --graph
     slg = stash list --date=format:'%y-%m-%d %H:%M' --pretty=reflg
     blg = branch --format '%(color:red)%(objectname:short)%(color:reset) %(color:green)%(committerdate:iso)%(color:reset) %(subject) %(color:bold blue)-- %(authorname)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset)'
