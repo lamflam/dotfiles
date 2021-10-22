@@ -19,7 +19,7 @@ fi
 
 # fzf via local installation
 if [ -e ~/.fzf ]; then
-  _append_to_path ~/.fzf/bin
+  add_to_path ~/.fzf/bin
   source ~/.fzf/shell/key-bindings.bash
   source ~/.fzf/shell/completion.bash
 fi
@@ -36,3 +36,7 @@ if [ -e $DOTFILES/bash/.localrc ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

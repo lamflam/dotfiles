@@ -46,7 +46,7 @@ nnoremap <leader>m :Magit<cr>                                                   
 nnoremap <leader>l :Extradite!<cr>                                                    " Open git commit viewer
 nnoremap  :vsp<cr>                                                                  " Vertical split
 nnoremap  :sp<cr>                                                                   " horizontal split
-nnoremap <leader>b :Gblame<cr>                                                        " Git blame
+nnoremap <leader>b :Git blame<cr>                                                     " Git blame
 
 nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gy <Plug>(coc-type-definition)
@@ -66,7 +66,8 @@ nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>n <Plug>(coc-rename)
 
 nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
-autocmd FileType javascript,typescript nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
+autocmd FileType solidity nmap <buffer> :CocCommand prettier.formatFile<cr>
 
 autocmd BufEnter * :syntax sync minlines=2000
 
