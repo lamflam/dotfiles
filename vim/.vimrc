@@ -65,6 +65,8 @@ xmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>a <Plug>(coc-codeaction-selected)
 nmap <leader>n <Plug>(coc-rename)
 
+nnoremap <silent> <Space> za
+
 nmap <leader>f :call CocAction('format')<cr>                                                        " \f to format
 autocmd FileType javascript,typescript,javascriptreact,typescriptreact nmap <buffer> <leader>f :CocCommand eslint.executeAutofix<cr>:CocCommand prettier.formatFile<cr>
 autocmd FileType solidity nmap <buffer> :CocCommand prettier.formatFile<cr>
@@ -73,6 +75,9 @@ autocmd BufEnter * :syntax sync minlines=2000
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+autocmd Syntax c,cpp,vim,xml,html,xhtml,js,jsx,ts,tsx setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,js,jsx,ts,tsx normal zR
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -123,6 +128,8 @@ set clipboard=unnamed                                                           
 set cmdheight=1                                                                    " The commandbar height
 set cul                                                                            " highlight current line
 set exrc                                                                           " allow project .vimrc
+set foldlevelstart=20
+set foldmethod=syntax
 set hlsearch                                                                       " highlight search
 set ignorecase                                                                     " Case insensitive
 set incsearch                                                                      " Move forward while typing search
@@ -145,6 +152,7 @@ set ruler                                                                       
 set secure                                                                         " Be safe with project specific vimrcs
 set showmatch                                                                      " Show matching bracets when text indicator is over them
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab                                 " no tabs
+set foldmethod=syntax
 set textwidth=120                                                                  " 120 max line length
 set ttimeoutlen=50                                                                 " Escape faster 
 set visualbell t_vb="."                                                            " no beeping, visual only
