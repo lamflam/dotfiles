@@ -3,5 +3,6 @@
   "coc.preferences.jumpCommand": "vsplit",
   "python.formatting.provider": "black",
   "diagnostic.errorSign": "►",
-  "diagnostic.warningSign": "►"
+  "diagnostic.warningSign": "►",
+  "tailwindCSS.headwind.runOnSave": false
 }
