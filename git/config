@@ -3,14 +3,14 @@
 #
 # https://github.com/so-fancy/diff-so-fancy
 [core]
-	editor = /usr/local/bin/vim
+	editor = /opt/homebrew/bin/vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 # [gpg]
 # 	program = /usr/local/bin/krgpg
 [commit]
-	gpgSign = true
+	# gpgSign = true
 [tag]
-	forceSignAnnotated = true
+	# forceSignAnnotated = true
 [rebase]
 	autosquash = true
 [merge]
@@ -36,6 +36,5 @@
     glg = log --date=format:'%y-%m-%d %H:%M' --pretty=lg --graph
     slg = stash list --date=format:'%y-%m-%d %H:%M' --pretty=reflg
     blg = branch --format '%(color:red)%(objectname:short)%(color:reset) %(color:green)%(committerdate:iso)%(color:reset) %(subject) %(color:bold blue)-- %(authorname)%(color:reset) %(color:yellow)(%(refname:short))%(color:reset)'
-	prod = "!f() { if [ -z $1 ]; then git tag -l | grep prod | sort -r | head -n 1; else git tag -l --contains $1 | grep prod | sort | head -n 1; fi }; f"
-	staging = "!f() { if [ -z $1 ]; then git tag -l | grep staging | sort -r | head -n 1; else git tag -l --contains $1 | grep staging | sort | head -n 1; fi }; f"
-	dev = "!f() { if [ -z $1 ]; then git tag -l | grep dev | sort -r | head -n 1; else git tag -l --contains $1 | grep dev | sort | head -n 1; fi }; f"
+	remote-fetch = "!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1; git fetch origin +$1:refs/remotes/origin/$1; }; rf"
+	remote-purge = "!rp() { git config --unset remote.origin.fetch \".*$1.*\"; git update-ref -d refs/remotes/origin/$1; }; rp"

@@ -24,72 +24,15 @@ install_command() {
     fi
 }
 
-install_brew() {
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-}
-
-install_kr() {
-    curl https://krypt.co/kr | sh
-}
-
-install_tmux() {
-    brew install tmux
-}
-
-install_fzf() {
-    brew install fzf
-}
-
-install_ag() {
-    brew install ag
-}
-
-install_node() {
-    brew install node
-    npm install -g n
-    npm install -g yarn
-}
-
-install_cmake() {
-    brew install cmake
-}
-
-install_reattach-to-user-namespace() {
-    brew install reattach-to-user-namespace
-}
-
-install_gsed() {
-    brew install gnu-sed
-}
-
 install_link $DOTFILES_GIT_DIR $DOTFILES
-install_link $DOTFILES/bash/.bashrc $HOME/.bashrc
-install_link $DOTFILES/bash/.bash_profile $HOME/.bash_profile
+install_link $DOTFILES/bash/.bashrc $HOME/.bashrc_local
+install_link $DOTFILES/bash/.bash_profile $HOME/.bash_profile_local
 install_link $DOTFILES/vim/.vim $HOME/.vim
 install_link $DOTFILES/vim/.vimrc $HOME/.vimrc
 install_link $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+install_link $DOTFILES/idea/ideavimrc $HOME/.ideavimrc
 
 git config --global include.path "$DOTFILES/git/config"
-
-install_command brew
-install_command kr
-install_command tmux
-install_command fzf
-install_command ag
-install_command node
-install_command cmake
-install_command reattach-to-user-namespace
-install_command gsed
-
-vim +PluginInstall +qall
-
-if [ ! -e $DOTFILES/.ycm_installed ]; then
-    pushd ~/.vim/bundle/YouCompleteMe > /dev/null
-    ./install.py --clang-completer && touch $DOTFILES/.ycm_installed
-    popd > /dev/null
-else
-    echo "YouCompleteMe already built"
-fi
 
 if [ ! -e $DOTFILES/.fonts_installed ]; then
     git clone https://github.com/powerline/fonts.git --depth=1

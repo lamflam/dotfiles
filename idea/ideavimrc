@@ -1,0 +1,34 @@
+set clipboard+=unnamed
+set clipboard+=ideaput
+set incsearch
+set ignorecase
+set surround
+
+nnoremap ˚ :m -2<CR>
+nnoremap ∆ :m +1<CR>
+nnoremap <C-\> :vsp<CR>                                                                  
+nnoremap <C-_> :sp<CR>                                                                   
+nnoremap <leader>q :action Unsplit<CR>
+nnoremap <leader>d :action CloseContent<CR>
+nnoremap <leader>da :action CloseAllEditors<CR>
+nnoremap <leader>f  :action ReformatCode<CR>
+nnoremap <leader>e :action GotoNextError<CR>
+nnoremap <leader>E :action GotoPreviousError<CR>
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
+
+nnoremap <C-h> :action PrevSplitter<CR>
+nnoremap <C-l> :action NextSplitter<CR>
+nnoremap <C-j> :action ActivateTerminalToolWindow<CR> 
+
+nnoremap <leader>t :action GoToFile<cr>
+nnoremap <leader>s :action SearchEverywhere<cr>
+
+nmap <silent> gd :action GotoDeclaration<cr>
+nmap <silent> gt :action GotoTest<cr>
+nmap <silent> gy :action GotoTypeDeclaration<cr>
+nmap <silent> gi :action GotoImplementation<cr>
+nmap <silent> gr :action FindUsages<cr>
+
+nmap <C-o> :action VimBack<CR>
